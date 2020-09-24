@@ -20,5 +20,6 @@ from . import views
 urlpatterns = [
     path('', views.get_home, name='get_home'),
     path('fhp_explain/', views.fhp_explain, name='fhp_explain'),
-    path('login/', views.login, name='login')
+    path('login/', views.login, name='login'),
+    path('sign_up/', views.sign_up, name='sign_up'),
 ]

@@ -15,8 +15,8 @@ def sign_up(request):
     context= {}
 
     # POST Method
-    if request.mehotd == 'POST':
-        if (request.POST['username'] and (request.POST['password'] and request.POST['password_check'])):
+    if request.method == 'POST':
+        if (request.POST['username'] and request.POST['password'] and request.POST['password_check']):
             if (request.POST['password'] == request.POST['password_check']):
                 new_user = User.objects.create_user(
                     username=request.POST['username'],
@@ -24,7 +24,7 @@ def sign_up(request):
                 )
 
                 auth.login(request, new_user)
-                return redirect('posts:index')
+                return redirect('get_home')
             else:
                 context['error'] = '비 밀 번 호 를  다 시  확 인 해 주 세 요.'
         else:
@@ -47,7 +47,7 @@ def login(request):
 
             if user is not None:
                 auth.login(request, user)
-                return redirect('post:index')
+                return redirect('get_home')
             else:
                 context['error'] = '아 이 디 와  비 밀 번 호 를  다 시  확 인 해 주 세 요 .'
         else:
