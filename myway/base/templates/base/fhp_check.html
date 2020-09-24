@@ -226,7 +226,7 @@
                      </div> {% endcomment %}
                   <ul class="blog-info-link mt-3 mb-4">
                      {% if result %}
-                        <li> result </li>
+                        <li> {{result}} </li>
                      {% endif %}
                      {% if user.is_authenticated %}
                         <li>
@@ -248,7 +248,7 @@
                         <li>
                            <div class="media post_item">
                            <form action="{% url 'fhp_check_check' None %}" method="POST" enctype="multipart/form-data"> {% csrf_token %}
-                              <img src="" alt="" srcset=""><input type="file" name="check" placeholder="사진을 넣으세요">
+                              <img src="" alt="" srcset=""><input type="file" name="check_photo" value = 'check_photo' placeholder="사진을 넣으세요">
                               <button type="submit" class="button button-contactForm btn_1 boxed-btn">확인 하기</button>
                            </form>
                            </div>

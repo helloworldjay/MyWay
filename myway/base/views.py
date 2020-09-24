@@ -68,13 +68,20 @@ def fhp_check(request):
     return render(request,'base/fhp_check.html',{})
 
 def fhp_check_check(request, user_photo):
-    
+    print(os.path)
+    file_name = None
+    if request.FILES:
+        file_name = request.FILES['check_photo']
     APP_KEY = '8676c07b42dd5a954ad0d0d2a1d3025c'
     IMAGE_FILE_PATH = None
-    if user_photo != None:
+    if user_photo != 'None':
         IMAGE_FILE_PATH = os.path.join(os.path.dirname(os.path.dirname(__file__)),user_photo)
     else:
-        IMAGE_FILE_PATH = os.path.join(os.path.dirname(os.path.dirname(__file__)),'test2/abnormal_2.jpg')
+        try:
+            IMAGE_FILE_PATH = os.path.join(os.path.dirname(os.path.dirname(__file__)),file_name)
+            print(IMAGE_FILE_PATH,'sibal')
+        except:
+            return render(request, 'base/fhp_check.html',{'result': '사진 인식에 실패하였습니다.'})
     # print(IMAGE_FILE_PATH)
     IMAGE_FILE_PATH = request.FILES
     # print(request.FILES['check'])
