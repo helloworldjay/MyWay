@@ -6,3 +6,6 @@ def get_home(request):
 
 def get_contact(request):
     return render(request, 'base/contact.html', {})
+
+def fhp_explain(request):
+    return render(request, 'base/fhp_explain.html', {})
