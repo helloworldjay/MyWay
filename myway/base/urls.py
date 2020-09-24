@@ -23,5 +23,5 @@ urlpatterns = [
     path('login/', views.login, name='login'),
     path('sign_up/', views.sign_up, name='sign_up'),
     path('fhp_check/',views.fhp_check,name='fhp_check'),
-    path('fhp_check/result',views.fhp_check_check,name='fhp_check_check'),
+    path('fhp_check/<slug:user_photo>/',views.fhp_check_check,name='fhp_check_check'),
 ]

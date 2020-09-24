@@ -224,20 +224,37 @@
                            </div>
                         </div>
                      </div> {% endcomment %}
-                     
-                     <div class="form-group">
+                  <ul class="blog-info-link mt-3 mb-4">
                      {% if result %}
-                        <ul>
-                           <li>{{result}}</li>
-                        </ul>
-                     {% else %}
-                        <form action="{% url 'fhp_check_check' %}" method="POST" enctype="multipart/form-data"> {% csrf_token %}
-                           <input type="file" name="check" placeholder="사진을 넣으세요">
-                           <button type="submit" class="button button-contactForm btn_1 boxed-btn">확인 하기</button>
-                        </form>
+                        <li> result </li>
                      {% endif %}
+                     {% if user.is_authenticated %}
+                        <li>
+                           <div class="media post_item">
+                           <img src="" alt="" srcset="">
+                           <form action="{% url 'fhp_check_check' user.photo %}" method="POST" enctype="multipart/form-data"> {% csrf_token %}
+                              <button type="submit" class="button button-contactForm btn_1 boxed-btn">확인 하기</button>
+                           </form>
+                           </div>
+                        </li>
+                     {% else %}
+                        <li>
+                        <div class="media post_item">
+                           <img src="" alt="" srcset="">
+                        </div>
+                        </li>
+                     {% endif %}
+                     <div class="form-group">
+                        <li>
+                           <div class="media post_item">
+                           <form action="{% url 'fhp_check_check' None %}" method="POST" enctype="multipart/form-data"> {% csrf_token %}
+                              <img src="" alt="" srcset=""><input type="file" name="check" placeholder="사진을 넣으세요">
+                              <button type="submit" class="button button-contactForm btn_1 boxed-btn">확인 하기</button>
+                           </form>
+                           </div>
+                        </li>
                      </div>
-                  </form>
+                  </ul>
                </div>
             </div>
             {% comment %} <div class="col-lg-4">
