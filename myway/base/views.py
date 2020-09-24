@@ -1,6 +1,9 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from django.contrib import auth
+import os
+import math
+import requests
 # Create your views here.
 def get_home(request):
     return render(request, 'base/index.html', {})
@@ -61,3 +64,36 @@ def logout(request):
         auth.logout(request)
     return redirect('posts:index')
 
+def fhp_check(request):
+    
+    return render(request,'base/fhp_check.html')
+
+def fhp_check_check(request):
+    print("잘되냐")
+    APP_KEY = '8676c07b42dd5a954ad0d0d2a1d3025c'
+    IMAGE_FILE_PATH = os.path.join(os.path.dirname(os.path.dirname(__file__)),'test2/abnormal_2.jpg')
+    # print(IMAGE_FILE_PATH)
+    IMAGE_FILE_PATH = request.FILES
+    # print(request.FILES['check'])
+    session = requests.Session()
+    session.headers.update({'Authorization': 'KakaoAK ' + APP_KEY})
+    # 파일로 이미지 입력시
+    with open(IMAGE_FILE_PATH, 'rb') as f:
+        response = session.post('https://cv-api.kakaobrain.com/pose', files=[('file', f)])
+    json_data=response.json()[0]['keypoints']
+    #기준값
+    for_neck_check=round(math.atan(40*(math.pi/180)),6)
+    #  귀 x         어깨 x
+    x=json_data[12]-json_data[18]
+    #  귀 y          어깨 y
+    y=json_data[13]-json_data[19]
+    res = round(y/x,6)
+        #측정값  기준값
+    if res<=for_neck_check:
+        result ="거북목이 맞습니다."
+    else:
+        result ="거북목이 아닙니다."
+    context={
+        'result':result
+    }
+    return render(request,'base/fhp_check.html',context)

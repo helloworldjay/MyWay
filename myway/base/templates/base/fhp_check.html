@@ -1,4 +1,4 @@
-{% extends 'forwardhead/base.html' %}
+{% extends 'base/base.html' %}
 {% block contents %}
    <!--================Blog Area =================-->
    <section class="blog_area single-post-area section-padding">
@@ -10,14 +10,13 @@
                      <img class="img-fluid" src="img/blog/single_blog_1.png" alt="">
                   </div>
                   <div class="blog_details">
-                     <h2>Second divided from form fish beast made every of seas
-                        all gathered us saying he our
+                     <h2>거북목 진단 하기
                      </h2>
-                     <ul class="blog-info-link mt-3 mb-4">
+                     {% comment %} <ul class="blog-info-link mt-3 mb-4">
                         <li><a href="#"><i class="fa fa-user"></i> Travel, Lifestyle</a></li>
                         <li><a href="#"><i class="fa fa-comments"></i> 03 Comments</a></li>
-                     </ul>
-                     <p class="excert">
+                     </ul> {% endcomment %}
+                     {% comment %} <p class="excert">
                         MCSE boot camps have its supporters and its detractors. Some people do not understand why you
                         should have to spend money on boot camp when you can get the MCSE study materials yourself at a
                         fraction of the camp price. However, who has the willpower
@@ -62,8 +61,8 @@
                         <li><a href="#"><i class="fa fa-dribbble"></i></a></li>
                         <li><a href="#"><i class="fa fa-behance"></i></a></li>
                      </ul>
-                  </div>
-                  <div class="navigation-area">
+                  </div> {% endcomment %}
+                  {% comment %} <div class="navigation-area">
                      <div class="row">
                         <div
                            class="col-lg-6 col-md-6 col-12 nav-left flex-row d-flex justify-content-start align-items-center">
@@ -224,14 +223,24 @@
                               <input class="form-control" name="website" id="website" type="text" placeholder="Website">
                            </div>
                         </div>
-                     </div>
+                     </div> {% endcomment %}
+                     
                      <div class="form-group">
-                        <button type="submit" class="button button-contactForm btn_1 boxed-btn">Send Message</button>
+                     {% if result %}
+                        <ul>
+                           <li>{{result}}</li>
+                        </ul>
+                     {% else %}
+                        <form action="{% url 'fhp_check_check' %}" method="POST" enctype="multipart/form-data"> {% csrf_token %}
+                           <input type="file" name="check" placeholder="사진을 넣으세요">
+                           <button type="submit" class="button button-contactForm btn_1 boxed-btn">확인 하기</button>
+                        </form>
+                     {% endif %}
                      </div>
                   </form>
                </div>
             </div>
-            <div class="col-lg-4">
+            {% comment %} <div class="col-lg-4">
                <div class="blog_right_sidebar">
                   <aside class="single_sidebar_widget search_widget">
                      <form action="#">
@@ -404,7 +413,7 @@
                      </form>
                   </aside>
                </div>
-            </div>
+            </div> {% endcomment %}
          </div>
       </div>
    </section>
