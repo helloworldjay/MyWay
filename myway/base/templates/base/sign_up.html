@@ -8,9 +8,14 @@
     <title>Document</title>
     <link rel="stylesheet" href="{%static 'base/css/loginstyle.css'%}">
 </head>
-<body width="100%" height="100%">
-    <form action="index.html" method="post" class="loginForm">
-      <h2>Login</h2>
+<body width="100%" height="100%"> 
+
+
+    <form action="{% url 'sign_up'%}" method="post" class="loginForm"> {% csrf_token %}
+      <h2>Sgin Up</h2>
+      {% if error %}
+          <p>{{error}}</p>
+      {% endif %}
       <div class="idForm">
         <input type="text" class="id" placeholder="ID" name = 'username'>
       </div>
@@ -20,14 +25,9 @@
       <div class="passForm">
         <input type="password" class="pw" placeholder="PW_check" name='passowrd_check'>
       </div>
-      <button type="button" class="btn" onclick="button()">
-        LOG IN
+      <button type="submit" class="btn" onclick="button()">
+        Sign up
       </button>
-      <script>
-          let button = () => {
-            alert('login Button !')
-        }
-      </script>
     </form>
 </body>
 </html>

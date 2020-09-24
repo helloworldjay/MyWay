@@ -9,7 +9,15 @@
   body {
     background-image: #34495e;
   }
-  
+  p {
+    font-size: 14px;
+    font-weight: 300;
+    line-height: 26px;
+    color: #808080;
+    margin-bottom: 13px;
+    text-align: center;
+  }
+
   .loginForm {
     position:absolute;
     width:300px;

@@ -9,24 +9,22 @@
     <link rel="stylesheet" href="{%static 'base/css/loginstyle.css'%}">
 </head>
 <body width="100%" height="100%">
-    <form action="index.html" method="post" class="loginForm">
+    <form action="{% url 'login' %}" method="post" class="loginForm"> {% csrf_token %}
       <h2>Login</h2>
+      {% if error %}
+          <p>{{error}}</p>
+      {% endif %}
       <div class="idForm">
-        <input type="text" class="id" placeholder="ID">
+        <input type="text" class="id" placeholder="ID" name = 'username'>
       </div>
       <div class="passForm">
-        <input type="password" class="pw" placeholder="PW">
+        <input type="password" class="pw" placeholder="PW" name = 'password'>
       </div>
-      <button type="button" class="btn" onclick="button()">
+      <button type="submit" class="btn">
         LOG IN
       </button>
-      <script>
-          let button = () => {
-            alert('login Button !')
-        }
-      </script>
       <div class="bottomText">
-        Don't you have ID? <a href="#">sign up</a>
+        Don't you have ID? <a href="{% url 'sign_up'%}">sign up</a>
       </div>
     </form>
 </body>
