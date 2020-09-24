@@ -6,3 +6,6 @@ def index(request):
 
 def contact(request):
     return render(request,'forwardhead/contact.html', {})
+
+def get_fhp_ex(request):
+    return render(request, "fhp_explain.html", {})
