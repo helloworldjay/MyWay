@@ -12,10 +12,13 @@
     <form action="index.html" method="post" class="loginForm">
       <h2>Login</h2>
       <div class="idForm">
-        <input type="text" class="id" placeholder="ID">
+        <input type="text" class="id" placeholder="ID" name = 'username'>
       </div>
       <div class="passForm">
-        <input type="password" class="pw" placeholder="PW">
+        <input type="password" class="pw" placeholder="PW" name='password'>
+      </div>
+      <div class="passForm">
+        <input type="password" class="pw" placeholder="PW_check" name='passowrd_check'>
       </div>
       <button type="button" class="btn" onclick="button()">
         LOG IN
@@ -25,9 +28,6 @@
             alert('login Button !')
         }
       </script>
-      <div class="bottomText">
-        Don't you have ID? <a href="#">sign up</a>
-      </div>
     </form>
 </body>
 </html>
