@@ -1,6 +1,8 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from django.contrib import auth
+from .models import User_info
+
 # Create your views here.
 def get_home(request):
     return render(request, 'base/index.html', {})
@@ -60,4 +62,5 @@ def logout(request):
     if request.method == 'POST':
         auth.logout(request)
     return redirect('posts:index')
+
 
