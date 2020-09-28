@@ -4,6 +4,8 @@ from django.contrib import auth
 import os
 import math
 import requests
+from .models import User_info
+
 # Create your views here.
 def get_home(request):
     return render(request, 'base/index.html', {})
@@ -107,3 +109,4 @@ def fhp_check_check(request, user_photo):
         'result':result
     }
     return render(request,'base/fhp_check.html',context)
+

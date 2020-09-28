@@ -16,6 +16,8 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from . import views
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     path('', views.get_home, name='get_home'),
@@ -24,4 +26,4 @@ urlpatterns = [
     path('sign_up/', views.sign_up, name='sign_up'),
     path('fhp_check/',views.fhp_check,name='fhp_check'),
     path('fhp_check/<slug:user_photo>/',views.fhp_check_check,name='fhp_check_check'),
-]
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
